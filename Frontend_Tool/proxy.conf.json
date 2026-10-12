@@ -1,0 +1,18 @@
+{
+  "/api": {
+    "target": "http://127.0.0.1:5225",
+    "secure": false,
+    "changeOrigin": true,
+    "ws": false,
+    "timeout": 1800000,
+    "proxyTimeout": 1800000
+  },
+  "/hubs": {
+    "target": "http://127.0.0.1:5225",
+    "secure": false,
+    "changeOrigin": true,
+    "ws": true,
+    "timeout": 1800000,
+    "proxyTimeout": 1800000
+  }
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Enterprise ingestion platform">
+  <defs>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#30afff"/>
+      <stop offset="1" stop-color="#1267b1"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#f5fbff"/>
+  <path d="M16 20 32 12l16 8-16 8-16-8Z" fill="url(#blue)"/>
+  <path d="M16 30 32 38l16-8v10l-16 8-16-8V30Z" fill="#1d82ce"/>
+  <path d="M16 42 32 50l16-8v10l-16 8-16-8V42Z" fill="#0e5b9d"/>
+  <path d="M32 20v31" stroke="#fff" stroke-width="2" opacity=".9"/>
+</svg>

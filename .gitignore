@@ -1,0 +1,29 @@
+# Local secrets and developer-specific configuration
+**/appsettings.Local.json
+**/appsettings.*.local.json
+**/.env
+**/.env.*
+!**/.env.example
+
+# Build output, IDE state, coverage, and package caches
+**/bin/
+**/obj/
+**/.vs/
+**/.idea/
+**/.angular/
+**/node_modules/
+**/dist/
+**/coverage/
+**/logs/
+**/uploads/
+**/dotCover.Output/
+**/dotCover.Output.html
+*.user
+*.suo
+
+# Local archives and generated staging copies
+EnterpriseIngestionPlatform/
+*_Package/
+_enterprise_ingestion_package/
+*.zip
+~$*.docx

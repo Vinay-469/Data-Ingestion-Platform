@@ -1,0 +1,22 @@
+<router-outlet />
+<app-upload-progress-panel />
+<div class="toast-stack" aria-live="polite" aria-atomic="true">
+  @for (item of toast.items(); track item.id) {
+    <div class="app-toast" [class.toast-error]="item.kind === 'error'" [class.toast-success]="item.kind === 'success'" role="status"><span class="toast-mark ui-icon" [class.icon-check]="item.kind === 'success'" [class.icon-clear]="item.kind === 'error'" aria-hidden="true"></span><span>{{ item.message }}</span><button type="button" (click)="toast.dismiss(item.id)" aria-label="Close message"><span class="ui-icon icon-clear" aria-hidden="true"></span></button></div>
+  }
+</div>
+@if (loading.isVisible()) {
+  <div class="global-loading" [class.ai-loading]="loading.isAiVisible()" [class.upload-loading]="loading.isUploadVisible()" role="status" aria-live="polite" aria-label="Loading">
+    <div class="loading-card">
+      @if (loading.isUploadVisible()) {
+        <div class="upload-progress-heading"><strong>UPLOADING</strong><b>{{ loading.uploadProgress() }}%</b></div>
+        <div class="upload-progress-track" role="progressbar" [attr.aria-valuenow]="loading.uploadProgress()" aria-valuemin="0" aria-valuemax="100"><span [style.width.%]="loading.uploadProgress()"></span></div>
+        <span>{{ loading.uploadProgress() < 70 ? 'Uploading and validating your file.' : 'Processing sheets, rows, and cells.' }}</span>
+      } @else {
+        <div class="loading-spinner" aria-hidden="true"></div>
+        <strong>{{ loading.isAiVisible() ? 'Analysing workbook' : 'Loading' }}</strong>
+        <span>{{ loading.isAiVisible() ? 'Please wait while the workbook analysis is prepared.' : 'Please wait while we process your request.' }}</span>
+      }
+    </div>
+  </div>
+}

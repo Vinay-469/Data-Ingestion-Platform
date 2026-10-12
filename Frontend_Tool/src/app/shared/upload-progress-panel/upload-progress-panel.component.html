@@ -1,0 +1,7 @@
+@if (progress.state(); as item) {
+  <aside class="upload-job-panel" [class.job-complete]="item.stage === 'Completed'" [class.job-error]="item.stage === 'Failed' || item.stage === 'Cancelled'" role="status" aria-live="polite">
+    <div class="job-heading"><span class="job-icon ui-icon" [class.icon-upload]="item.stage === 'Importing' || item.stage === 'Uploading'" [class.icon-check]="item.stage === 'Completed'" [class.icon-clear]="item.stage !== 'Importing' && item.stage !== 'Uploading' && item.stage !== 'Completed'"></span><div><strong>{{ item.stage === 'Importing' || item.stage === 'Uploading' ? 'Upload in progress' : item.stage }}</strong><small>{{ item.fileName }}</small></div><button type="button" (click)="dismiss()" aria-label="Dismiss upload status">×</button></div>
+    @if (item.stage === 'Importing' || item.stage === 'Uploading') { <div class="job-track"><span [style.width.%]="item.progress"></span></div><div class="job-meta"><span>{{ item.message }}</span><b>{{ item.progress }}%</b></div><small class="job-time">Elapsed: {{ item.elapsedSeconds }} seconds</small>@if (item.stage === 'Importing') { <button type="button" class="job-cancel" (click)="cancel()">Cancel import</button> } }
+    @else { <p>{{ item.message }}</p>@if (item.error) { <small>{{ item.error }}</small> } }
+  </aside>
+}

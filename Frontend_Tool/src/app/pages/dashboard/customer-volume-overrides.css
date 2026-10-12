@@ -1,0 +1,3 @@
+.customer-volume-panel .customer-filter:first-of-type::before{content:none}
+.customer-volume-panel .customer-filter:nth-of-type(2)::before{content:'\25A6';position:absolute;z-index:3;display:grid;place-items:center;color:var(--sky);font-family:Arial,sans-serif;font-size:19px;font-weight:700;line-height:1;pointer-events:none}
+.customer-volume-panel .customer-filter:nth-of-type(3)::before{content:'\2195';position:absolute;z-index:3;display:grid;place-items:center;color:var(--sky);font-family:Arial,sans-serif;font-size:19px;font-weight:700;line-height:1;pointer-events:none}

@@ -1,0 +1,29 @@
+<main class="login-shell">
+  <section class="login-visual" aria-label="Enterprise ingestion platform">
+    <div class="visual-glow visual-glow-one"></div><div class="visual-glow visual-glow-two"></div>
+    <div class="visual-content">
+      <div class="login-brand"><span class="login-brand-mark"><span class="ui-icon icon-spark" aria-hidden="true"></span></span><span>Enterprise Ingestion</span></div>
+      <div class="visual-copy"><p class="eyebrow">SECURE DATA OPERATIONS</p><h1>Move data forward with confidence.</h1><p>One governed workspace for uploading, validating, analysing, and managing enterprise workbooks.</p></div>
+      <div class="visual-flow" aria-label="Data workflow"><div><span class="flow-icon ui-icon icon-upload" aria-hidden="true"></span><b>Upload</b><small>Bring data in</small></div><span class="flow-line" aria-hidden="true"></span><div><span class="flow-icon ui-icon icon-check" aria-hidden="true"></span><b>Validate</b><small>Keep quality high</small></div><span class="flow-line" aria-hidden="true"></span><div><span class="flow-icon ui-icon icon-data" aria-hidden="true"></span><b>Explore</b><small>Find what matters</small></div></div>
+      <div class="visual-footer"><span class="status-dot"></span><span>Protected workspace</span><span class="footer-divider"></span><span>Metadata-aware</span></div>
+    </div>
+  </section>
+  <section class="login-panel">
+    <div class="login-card">
+      <div class="mobile-brand"><span class="login-brand-mark"><span class="ui-icon icon-spark" aria-hidden="true"></span></span><b>Enterprise Ingestion</b></div>
+      <div class="form-heading"><p class="eyebrow">{{ registerMode ? 'CUSTOMER REGISTRATION' : 'WELCOME BACK' }}</p><h2>{{ registerMode ? 'Create your workspace access' : 'Sign in to your workspace' }}</h2><p>{{ registerMode ? 'Set up a secure customer account to start managing your files.' : 'Continue to your governed data workspace.' }}</p></div>
+      <form (ngSubmit)="submit()" #loginForm="ngForm" novalidate>
+        <label for="userName">Username<span class="required-mark">*</span></label>
+        <div class="input-wrap"><span class="field-icon ui-icon icon-admin" aria-hidden="true"></span><input id="userName" name="userName" autocomplete="username" [(ngModel)]="userName" required minlength="3" placeholder="Enter your username" /></div>
+        <label for="password">Password<span class="required-mark">*</span></label>
+        <div class="input-wrap"><span class="field-icon ui-icon icon-settings" aria-hidden="true"></span><input id="password" name="password" [type]="showPassword ? 'text' : 'password'" [attr.autocomplete]="registerMode ? 'new-password' : 'current-password'" [(ngModel)]="password" required minlength="8" placeholder="Enter your password" /><button type="button" class="password-toggle" (click)="showPassword = !showPassword" [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">{{ showPassword ? 'Hide' : 'Show' }}</button></div>
+        @if (error) {<div class="form-error" role="alert"><span class="ui-icon icon-clear" aria-hidden="true"></span><span>{{ error }}</span></div>}
+        <button class="primary-submit" type="submit" [disabled]="loginForm.invalid || isSubmitting"><span>{{ isSubmitting ? (registerMode ? 'Creating account…' : 'Signing in…') : (registerMode ? 'Create customer account' : 'Sign in securely') }}</span><span class="ui-icon" [class.icon-forward]="!isSubmitting" [class.icon-refresh]="isSubmitting" aria-hidden="true"></span></button>
+      </form>
+      <div class="form-divider"><span>or</span></div>
+      <button class="mode-switch" type="button" (click)="registerMode = !registerMode; error = ''; showPassword = false">{{ registerMode ? 'Already have an account? Sign in' : 'New customer? Create an account' }}<span class="ui-icon icon-forward" aria-hidden="true"></span></button>
+      <p class="security-note"><span class="ui-icon icon-check" aria-hidden="true"></span>Your session is protected with secure authentication.</p>
+    </div>
+    <small class="login-copyright">Enterprise Ingestion Platform · Secure data operations</small>
+  </section>
+</main>

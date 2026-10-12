@@ -1,0 +1,22 @@
+namespace CoreModels.DTOs;
+
+public sealed record UploadSummaryDto(long UploadId, string UserName, string OriginalFileName, string Status, bool IsActive, DateTime UploadedOn, int TotalSheets, long TotalRows, long DuplicateRows, long NullRows);
+public sealed record SheetDto(long SheetId, string SheetName, int SheetOrder, long TotalRows, int TotalColumns);
+public sealed record ColumnDto(long ColumnId, string ColumnName, string DisplayName, int ColumnOrder, string DetectedDataType, bool AllowNull, long UniqueValues);
+public sealed record CellDto(long ColumnId, string ColumnName, string? Value, string DetectedDataType, string ValidationStatus);
+public sealed record RowDto(long RowId, long RowNumber, bool HasDuplicate, bool HasNull, bool IsValid, string? Facility, string? Manufacture, string? Product, string? ProductDescription, string? CustomerUom, decimal? CustomerQty, IReadOnlyList<CellDto> Cells);
+public sealed record SourceColumnDto(string SheetName, int SheetOrder, string SourceColumnName, int ColumnOrder, string DetectedDataType);
+public sealed record ColumnMappingDto(string SheetName, int SheetOrder, string SourceColumnName, int ColumnOrder, string? TargetColumn, int ConfidenceScore, string ConfidenceLevel, string? Reason, string MappingMethod, bool IsRecommended);
+public sealed record ConfirmedColumnMappingDto(string SheetName, int SheetOrder, string SourceColumnName, int ColumnOrder, string TargetColumn, string MappingMethod = "Manual", int ConfidenceScore = 0, string? AiReason = null);
+public sealed record MetadataColumnSelectionDto(string SheetName, int SheetOrder, string SourceColumnName, int ColumnOrder);
+public sealed record ColumnMappingResultDto(Guid ValidationId, IReadOnlyList<SourceColumnDto> SourceColumns, IReadOnlyList<ColumnMappingDto> Mappings, IReadOnlyList<string> TargetColumns, bool AiAvailable, string? Message);
+public sealed record ValidationSummaryDto(long UploadId, string Status, long TotalRows, long DuplicateRows, long NullRows, long SkippedRows, int TotalSheets, string? ErrorMessage);
+public sealed record UploadValidationResultDto(Guid ValidationId, string OriginalFileName, string Status, DateTime ExpiresAt, int TotalSheets, long TotalRows, int TotalColumns, long DuplicateRows, long NullRows, bool DuplicateFile, int DuplicateSheetNames, int DuplicateColumns, int EmptySheets, bool EmptyWorkbook, long InvalidDataTypeCells, IReadOnlyList<string> Issues, IReadOnlyList<string> AdditionalColumns, IReadOnlyList<SourceColumnDto>? SourceColumns = null);
+public sealed record UploadConfirmationRequest(Guid ValidationId, bool KeepNullRows = true, bool SkipDuplicateRows = false, bool SkipInvalidRows = false, IReadOnlyList<string>? SelectedCustomColumns = null, IReadOnlyList<ConfirmedColumnMappingDto>? Mappings = null, IReadOnlyList<MetadataColumnSelectionDto>? SelectedMetadataColumns = null, IReadOnlyList<int>? ExcludedSheetOrders = null);
+public sealed record UploadJobStatusDto(Guid JobId, string Status, string Stage, int Progress, ValidationSummaryDto? Result, string? ErrorMessage, DateTime QueuedAt, DateTime? StartedAt, DateTime? CompletedAt, long? ElapsedMilliseconds, long? ProcessingMilliseconds, long? StorageMilliseconds);
+public sealed record DailyUploadPointDto(string Date, long Count);
+public sealed record DailyUploadSeriesDto(string Label, IReadOnlyList<DailyUploadPointDto> Points);
+public sealed record StandardColumnCoverageDto(string ColumnName, long Filled, long Blank);
+public sealed record AdminCustomerVolumeDto(string UserName, long Uploads, long Rows);
+public sealed record DashboardDto(long TotalUploads, long FilesUploaded, long RowsImported, long SheetsImported, long DuplicateRows, long NullRows, double SuccessRate, double FailureRate, double? UploadTrendPercent, double? RowsTrendPercent, IReadOnlyList<DailyUploadSeriesDto> DailyUploads);
+public sealed record AdminDashboardDto(long TotalUsers, long TotalUploads, long ActiveUploads, long InactiveUploads, long RowsImported, long SheetsImported, long DuplicateRows, long NullRows, double SuccessRate, IReadOnlyList<UploadSummaryDto> RecentUploads, IReadOnlyList<DailyUploadSeriesDto> DailyUploads, IReadOnlyList<StandardColumnCoverageDto> StandardColumnCoverage, IReadOnlyList<AdminCustomerVolumeDto> CustomerVolume);

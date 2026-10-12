@@ -1,0 +1,79 @@
+.workbook-coverage-panel{margin-top:1rem;padding:1.25rem;border:1px solid var(--line);border-radius:.85rem;background:var(--surface);box-shadow:0 .5rem 1.5rem rgb(20 50 74 / 5%)}
+.workbook-coverage-layout{display:grid;grid-template-columns:190px 1fr;gap:1.5rem;align-items:center;margin-top:1rem}
+.workbook-coverage-pie{display:grid;place-items:center;position:relative;width:158px;height:158px;margin:auto;border-radius:50%;box-shadow:inset 0 0 0 1px rgb(255 255 255 / 18%),0 12px 25px rgb(12 54 84 / 16%)}
+.workbook-coverage-pie::after{content:"";position:absolute;width:94px;height:94px;border-radius:50%;background:var(--surface)}
+.workbook-coverage-pie span{position:relative;z-index:1;text-align:center}.workbook-coverage-pie strong,.workbook-coverage-pie small{display:block}.workbook-coverage-pie strong{color:var(--ink);font-size:1.05rem}.workbook-coverage-pie small{margin-top:3px;color:var(--muted);font-size:10px}
+.workbook-coverage-legend{display:grid;gap:.45rem}.workbook-coverage-legend>div{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:.55rem;align-items:center;padding:.55rem .65rem;border:1px solid transparent;border-radius:.55rem}.workbook-coverage-legend>div:hover{border-color:var(--sky);background:rgb(48 175 255 / 8%)}.workbook-coverage-legend i{width:9px;height:9px;border-radius:50%}.workbook-coverage-legend strong,.workbook-coverage-legend small{display:block}.workbook-coverage-legend strong{font-size:.75rem;color:var(--ink)}.workbook-coverage-legend small{margin-top:.15rem;color:var(--muted);font-size:.65rem}.workbook-coverage-legend b{color:var(--sky);font-size:.72rem}
+@media(max-width:650px){.workbook-coverage-layout{grid-template-columns:1fr}.workbook-coverage-pie{width:142px;height:142px}.workbook-coverage-pie::after{width:84px;height:84px}}
+
+/* Compact workbook analytics without removing the real metrics. */
+.analytics-section,
+.workbook-coverage-panel {
+  display: none !important;
+}
+
+.analytics-section,
+.workbook-coverage-panel {
+  margin-top: .75rem;
+  margin-bottom: .75rem;
+  padding: 1rem;
+}
+
+.analytics-section .analytics-heading,
+.workbook-coverage-panel .analytics-heading {
+  margin-bottom: .65rem;
+}
+
+.analytics-section .chart-card {
+  min-height: 155px;
+  padding: .8rem;
+}
+
+.analytics-section .chart-card-heading {
+  margin-bottom: .75rem;
+}
+
+.analytics-section .donut-layout {
+  gap: .9rem;
+}
+
+.analytics-section .donut {
+  width: 92px;
+  height: 92px;
+}
+
+.analytics-section .donut::after {
+  inset: 13px;
+}
+
+.analytics-section .donut b {
+  font-size: 1.1rem;
+}
+
+.analytics-section .quality-meter {
+  margin: 1.2rem 0 .7rem;
+}
+
+.workbook-coverage-layout {
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: .65rem;
+}
+
+.workbook-coverage-pie {
+  width: 112px;
+  height: 112px;
+}
+
+.workbook-coverage-pie::after {
+  width: 68px;
+  height: 68px;
+}
+
+.workbook-coverage-legend {
+  gap: .25rem;
+}
+
+.workbook-coverage-legend > div {
+  padding: .35rem .5rem;
+}

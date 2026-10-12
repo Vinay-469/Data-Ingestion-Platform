@@ -1,0 +1,32 @@
+<main class="page explorer-landing">
+  <header class="explorer-landing-header">
+    <div>
+      <a routerLink="/dashboard"><span class="ui-icon icon-back" aria-hidden="true"></span> Dashboard</a>
+      <p class="eyebrow">ANALYTICS / DATA EXPLORER</p>
+      <h1>Data Explorer</h1>
+      <p class="subtitle">Compare your uploaded workbooks and open a visual profile for any individual file.</p>
+    </div>
+    <a class="history-link" routerLink="/history"><span class="ui-icon icon-history" aria-hidden="true"></span> Upload history</a>
+  </header>
+  @if (loading) {
+    <section class="empty-state explorer-loading" aria-live="polite"><span class="ui-icon icon-data" aria-hidden="true"></span><h2>Loading data explorer</h2><p>Preparing your uploaded files...</p></section>
+  } @else if (uploads.length) {
+    <section class="explorer-summary">
+      <article><span class="summary-icon ui-icon icon-file" aria-hidden="true"></span><strong>{{ uploads.length }}</strong><small>Files available</small></article>
+      <article><span class="summary-icon ui-icon icon-grid" aria-hidden="true"></span><strong>{{ totalRows | number }}</strong><small>Total rows</small></article>
+      <article><span class="summary-icon ui-icon icon-data" aria-hidden="true"></span><strong>{{ totalSheets | number }}</strong><small>Sheets indexed</small></article>
+      <article><span class="summary-icon ui-icon icon-clear" aria-hidden="true"></span><strong>{{ totalDuplicates | number }}</strong><small>Duplicate rows</small></article>
+    </section>
+    <section class="explorer-visual">
+      <div class="section-heading"><div><p class="eyebrow">WORKBOOK COMPARISON</p><h2>Rows by uploaded file</h2><p>Select a file to open its detailed charts and data explorer.</p></div><span>{{ uploads.length }} available files</span></div>
+      <div class="file-bars">
+        @for (upload of uploads; track upload.uploadId) {
+          <button type="button" class="file-bar-row" [class.selected]="selected?.uploadId === upload.uploadId" (click)="select(upload)"><span class="file-bar-label"><i class="ui-icon icon-file" aria-hidden="true"></i><b>{{ upload.originalFileName }}</b><small>{{ upload.totalSheets }} sheets - {{ upload.uploadedOn | date:'mediumDate' }}</small></span><span class="file-bar-track"><i [style.width.%]="rowWidth(upload)"></i></span><strong>{{ upload.totalRows | number }}</strong></button>
+        }
+      </div>
+      @if (selected) { <div class="selected-file-card"><span class="selected-file-icon ui-icon icon-data" aria-hidden="true"></span><div><strong>{{ selected.originalFileName }}</strong><small>{{ selected.totalRows | number }} rows - {{ selected.totalSheets }} sheets - {{ selected.duplicateRows | number }} duplicate rows</small></div><a [routerLink]="['/viewer', selected.uploadId]">Open visual explorer <span class="ui-icon icon-forward" aria-hidden="true"></span></a></div> }
+    </section>
+  } @else {
+    <section class="empty-state"><span class="ui-icon icon-data" aria-hidden="true"></span><h2>No data available yet</h2><p>Upload a workbook to start exploring visual analytics.</p><a routerLink="/dashboard">Go to dashboard</a></section>
+  }
+</main>

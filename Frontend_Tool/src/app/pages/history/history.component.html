@@ -1,0 +1,98 @@
+<main class="page history-page">
+  <header class="history-header">
+    <div>
+      <a routerLink="/dashboard"><span class="ui-icon icon-back" aria-hidden="true"></span> Dashboard</a>
+      <p class="eyebrow">GOVERNANCE / ACTIVITY</p>
+      <h1>Upload history</h1>
+      <p class="subtitle">Review, explore, and manage every ingestion event.</p>
+    </div>
+    <a class="primary-link" routerLink="/dashboard">
+      <span class="ui-icon icon-add" aria-hidden="true"></span> New upload
+    </a>
+  </header>
+
+  <section class="history-toolbar">
+    <label class="search-box">
+      <span class="ui-icon icon-search" aria-hidden="true"></span>
+      <input placeholder="Search by workbook name" [(ngModel)]="search">
+    </label>
+    <label>
+      <span>Status</span>
+      <select [(ngModel)]="statusFilter">
+        <option value="all">All statuses</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+      </select>
+    </label>
+    <label>
+      <span>Sort by</span>
+      <select [(ngModel)]="sortBy">
+        <option value="newest">Newest first</option>
+        <option value="name">File name</option>
+        <option value="rows">Most rows</option>
+      </select>
+    </label>
+    <button class="clear-button" type="button" (click)="clearFilters()">Clear filters</button>
+  </section>
+
+  <div class="result-summary">
+    <strong>{{ filtered.length }} uploads</strong>
+    <span>Showing matching ingestion records</span>
+  </div>
+
+  <div class="history-table-wrap">
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>Document Name</th>
+          <th>Uploaded On</th>
+          <th class="history-number">Sheets</th>
+          <th class="history-number">Rows</th>
+          <th>Status</th>
+          <th class="history-actions-heading">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (upload of filtered; track upload.uploadId) {
+          <tr>
+            <td>
+              <div class="history-workbook-cell">
+                <span class="history-file-icon ui-icon icon-file" aria-hidden="true"></span>
+                <strong class="history-file-name" [title]="upload.originalFileName">{{ upload.originalFileName }}</strong>
+              </div>
+            </td>
+            <td class="history-date">{{ upload.uploadedOn | date:'medium' }}</td>
+            <td class="history-number">{{ upload.totalSheets }}</td>
+            <td class="history-number">{{ upload.totalRows | number }}</td>
+            <td class="history-status-cell">
+              <span class="history-status" [class.inactive]="!upload.isActive">
+                <i></i>{{ upload.isActive ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+            <td>
+              <div class="history-actions" [class.inactive-actions]="!upload.isActive">
+                @if (upload.isActive || auth.role() !== 'Admin') {
+                  <a class="history-action-link" [routerLink]="['/viewer', upload.uploadId]">Explore</a>
+                } @else {
+                  <span class="inactive-action-button">Restricted</span>
+                }
+                @if (upload.isActive || auth.role() !== 'Admin') {
+                  <button class="history-action-link" type="button" (click)="download(upload)" [disabled]="downloadingId === upload.uploadId">{{ downloadingId === upload.uploadId ? 'Downloading…' : 'Download' }}</button>
+                }
+                @if (auth.role() !== 'Admin') {
+                  <button class="history-action-button" type="button" (click)="toggle(upload)">
+                    {{ upload.isActive ? 'Deactivate' : 'Activate' }}
+                  </button>
+                }
+              </div>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6" class="history-empty">No uploads match these filters.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</main>

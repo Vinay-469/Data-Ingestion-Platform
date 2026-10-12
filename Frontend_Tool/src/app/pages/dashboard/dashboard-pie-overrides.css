@@ -1,0 +1,217 @@
+.coverage-pie {
+  position: relative;
+}
+
+/* The completeness chart belongs in its own analytics panel, not inside the upload cards. */
+.admin-panel > .standard-coverage {
+  display: none;
+}
+
+.standard-coverage-panel { display: none; }
+
+.standard-coverage-panel {
+  margin-top: 1rem;
+}
+
+.standard-coverage-panel .standard-coverage {
+  margin: 18px 0 0;
+}
+
+.content:has(.daily-admin-chart) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.content:has(.daily-admin-chart) > .intro-row {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+
+.content:has(.daily-admin-chart) > .daily-admin-chart {
+  grid-column: 1;
+  grid-row: 3;
+  margin-top: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.content:has(.daily-admin-chart) > .admin-panel {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin-top: 0;
+}
+
+.content:has(.daily-admin-chart) > .standard-coverage-panel {
+  height: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.content:has(.daily-admin-chart) > .daily-admin-chart {
+  min-width: 0;
+}
+
+.content:has(.daily-admin-chart) > .daily-admin-chart,
+.content:has(.daily-admin-chart) > .standard-coverage-panel {
+  align-self: stretch;
+  margin-top: 0;
+  transform: translateY(0);
+}
+
+.standard-coverage-panel .panel-heading {
+  min-height: 48px;
+}
+
+.standard-coverage-panel .standard-coverage {
+  grid-template-columns: 180px minmax(0, 1fr);
+  align-items: center;
+  min-height: 250px;
+  margin-top: 16px;
+  padding: 18px;
+  background: linear-gradient(145deg, rgb(48 175 255 / 7%), transparent);
+}
+
+.standard-coverage-panel .coverage-pie {
+  width: 148px;
+  height: 148px;
+}
+
+.standard-coverage-panel .coverage-pie::after {
+  width: 88px;
+  height: 88px;
+}
+
+.standard-coverage-panel .coverage-legend {
+  gap: 6px;
+}
+
+.standard-coverage-panel .coverage-legend-item {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) 58px;
+  min-height: 40px;
+  padding: 7px 10px;
+  column-gap: 9px;
+}
+
+.standard-coverage-panel .coverage-legend-item > div {
+  min-width: 0;
+}
+
+.standard-coverage-panel .coverage-legend-item strong,
+.standard-coverage-panel .coverage-legend-item small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.standard-coverage-panel .coverage-legend-item small {
+  font-variant-numeric: tabular-nums;
+}
+
+.standard-coverage-panel .coverage-legend-item > b {
+  width: 58px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.standard-coverage-panel .coverage-swatch {
+  align-self: start;
+  margin-top: 5px;
+}
+
+.standard-coverage-panel .coverage-description {
+  max-width: 420px;
+  line-height: 1.45;
+}
+
+.content:has(.daily-admin-chart) > .customer-volume-panel {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1;
+  position: relative;
+  z-index: 1;
+  grid-column: 2;
+  grid-row: 3;
+  height: 100%;
+  min-width: 0;
+  margin-top: 0;
+  box-sizing: border-box;
+}
+
+.content:has(.daily-admin-chart) > .daily-admin-chart,
+.content:has(.daily-admin-chart) > .customer-volume-panel {
+  min-height: 0;
+}
+
+.daily-admin-chart .daily-chart {
+  height: 180px;
+}
+
+.daily-admin-chart .daily-chart-summary,
+.customer-volume-chart {
+  margin-top: 14px;
+}
+
+.customer-volume-panel .panel-heading {
+  min-height: 48px;
+}
+
+.customer-volume-chart {
+  display: grid;
+  gap: 10px;
+}
+
+.customer-volume-row {
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr) 92px;
+  gap: 10px;
+  align-items: center;
+}
+
+.customer-volume-label strong,
+.customer-volume-label small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.customer-volume-label strong { color: var(--ink); font-size: 12px; }
+.customer-volume-label small { margin-top: 3px; color: var(--muted); font-size: 10px; }
+.customer-volume-track { height: 12px; overflow: hidden; border-radius: 999px; background: var(--line); }
+.customer-volume-track i { display: block; height: 100%; min-width: 4px; border-radius: inherit; background: linear-gradient(90deg, var(--sky), #126b91); transition: width .35s ease; }
+.customer-volume-value { color: var(--sky); font-size: 11px; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.customer-volume-row:hover .customer-volume-track i { background: linear-gradient(90deg, #65d7ff, #1688c7); }
+.customer-volume-filters{display:flex;align-items:end;gap:10px;margin:14px 0 12px}.customer-search{display:flex;align-items:center;gap:8px;flex:1;min-width:0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--sky)}.customer-search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font:inherit;font-size:12px}.customer-filter{display:grid;gap:4px;color:var(--muted);font-size:10px;font-weight:700;white-space:nowrap}.customer-filter select{padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;font-size:12px}.customer-volume-chart{max-height:270px;overflow-y:auto;padding-right:4px}.customer-volume-chart::-webkit-scrollbar{width:7px}.customer-volume-chart::-webkit-scrollbar-thumb{border-radius:8px;background:var(--sky)}body[data-theme='dark'] .customer-search,body[data-theme='dark'] .customer-filter select{background:#102f43;color:#e5f7ff}@media(max-width:560px){.customer-volume-filters{align-items:stretch;flex-direction:column}.customer-filter select{width:100%}}
+
+.content:has(.daily-admin-chart) > .recent-panel {
+  grid-column: 1 / -1;
+  grid-row: 5;
+  margin-top: 0;
+}
+
+/* The portfolio is rendered in its own panel below the two analytics cards. */
+.admin-panel > .admin-chart-heading,
+.admin-panel > .admin-card-grid { display: none; }
+
+.admin-panel .admin-summary > div:first-child {
+  display: none;
+}
+
+.admin-panel .admin-summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.content:has(.daily-admin-chart) > .portfolio-panel {
+  grid-column: 1 / -1;
+  grid-row: 4;
+  margin-top: 0;
+}
+
+/* Keep the search prominent; the two controls remain compact icon-only dropdowns. */
+.customer-volume-filters{flex-wrap:nowrap}.customer-search{flex:1 1 auto;min-width:0}.customer-filter{position:relative;width:40px;min-width:40px;height:38px;display:grid;place-items:center}.customer-filter>span{display:none}.customer-filter::before{position:absolute;z-index:2;display:grid;place-items:center;color:var(--sky);font-family:Arial,sans-serif;font-size:19px;font-weight:700;line-height:1;pointer-events:none}.customer-filter:first-of-type::before{content:'\25A6'}.customer-filter:last-of-type::before{content:'\2195'}.customer-filter select{position:absolute;inset:0;z-index:1;width:40px;height:38px;padding:0;border:1px solid var(--line);border-radius:8px;background:transparent;color:transparent;cursor:pointer;appearance:none}.customer-filter select option{color:#111827;font-size:12px}.customer-filter select:focus{outline:2px solid var(--sky);outline-offset:1px}body[data-theme='dark'] .customer-filter select{color:transparent;background:#102f43}
+@media(max-width:900px) {
+  .content:has(.daily-admin-chart) { display: block; }
+  .content:has(.daily-admin-chart) > .standard-coverage-panel,
+  .content:has(.daily-admin-chart) > .customer-volume-panel,
+  .content:has(.daily-admin-chart) > .admin-panel,
+  .content:has(.daily-admin-chart) > .recent-panel { margin-top: 1rem; }
+}
+.customer-volume-panel .panel-kicker{font-size:0}.customer-volume-panel .panel-kicker::after{content:'ALL CUSTOMERS';font-size:10px}
